@@ -1,0 +1,61 @@
+import phonenumbers
+from phonenumbers import geocoder, carrier, timezone
+
+
+number = input("Enter your number here: ")
+code = "+" + input("Enter country code here: ")
+number = code + number
+
+
+phone_num = phonenumbers.parse(number)
+
+valid = phonenumbers.is_valid_number(phone_num)
+
+possible = phonenumbers.is_possible_number(phone_num)
+
+carrier = carrier.name_for_number(phone_num, "en")
+
+region = geocoder.description_for_number(phone_num, "en")
+
+timezone = timezone.time_zones_for_number(phone_num)
+
+
+
+
+while True:
+
+    print("""
+1. Check Valid      3. Find Carrier    5. Get Timezone
+2. Check Possible   4. Find Region     6. Exit
+""")
+
+    options = input("Enter here: ")
+    options = int(options)
+    print("\n")
+
+    #print(options)
+
+    if options == 1:
+        print("Valid:", valid)
+
+    elif options == 2:
+        print("Possible:", possible)
+
+    elif options == 3:
+        print("Carrier:", carrier)
+
+    elif options == 4:
+        print("Region:", region)
+
+    elif options == 5:
+        print("Timezone:", timezone)
+
+    elif options == 6:
+        print("Exiting...")
+        break
+
+    else:
+        print("Incorrect Input!")
+        print("Please, Choose option 1-6")
+
+
